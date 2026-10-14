@@ -1,0 +1,20 @@
+name: Multiple Jobs Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Welcome Step
+        run: echo "Hello World from Job 1!"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1 # تبدأ هذه المهمة بعد انتهاء job1 بنجاح
+    steps:
+      - name: Build Step
+        run: echo "Building the project in Job 2..."
